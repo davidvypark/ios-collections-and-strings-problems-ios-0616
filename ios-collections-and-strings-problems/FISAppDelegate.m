@@ -17,7 +17,44 @@
 
 -(NSString *)makeTextFrame:(NSArray *)arrayOfWords{
     
-    return @"";
+    NSMutableArray *framedWords = [[NSMutableArray alloc] init];
+    NSMutableString *longestWord = [NSMutableString stringWithString:@""];
+    NSMutableString *firstAndLastRow = [NSMutableString stringWithFormat:@""];
+    NSMutableString *finalResult = [NSMutableString stringWithFormat:@""];
+    
+    //Find the longest word in the array
+    
+    for(NSString *word in arrayOfWords) {
+        if (word.length > longestWord.length) {
+            //can I do this?? *******
+            longestWord = [word mutableCopy];
+        }
+    }
+    
+    for(NSUInteger i = 0; i <longestWord.length + 4; i++) {
+        [firstAndLastRow appendString:@"*"];
+    }
+
+    for(NSString *word in arrayOfWords) {
+        
+        NSMutableString *rowWithFramedWord = [NSMutableString stringWithString:@""];
+        NSMutableString *numberOfSpaces = [NSMutableString stringWithString:@""];
+        
+        for (NSUInteger i = 0; i < longestWord.length - word.length; i++){
+            [numberOfSpaces appendString:@" "];
+        }
+        
+        [rowWithFramedWord stringByAppendingFormat:@"* %@%@ *",word, numberOfSpaces];
+    }
+    
+    [finalResult appendString:firstAndLastRow];
+    for(NSString *row in framedWords) {
+        [finalResult stringByAppendingFormat:@"\n%@",row];
+    }
+    [finalResult stringByAppendingFormat:@"\n%@", firstAndLastRow];
+
+    NSLog(@"%@", finalResult);
+    return finalResult;
 }
 
 -(NSString *)englishToPigLatin:(NSString *)englishText {
