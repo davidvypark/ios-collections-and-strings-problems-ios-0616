@@ -6,6 +6,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    
+    [self makeTextFrame:@[@"Hello", @"World", @"I", @"am", @"a", @"frame"]];
+    
+    [self englishToPigLatin:@"Hello from the other side"];
+    
+    [self pigLatinToEnglish:@"Ellohay romfay hetay theroay idesay"];
+    
+    [self combineAndAlternateWithArray:@[@"a",@"b",@"c"] andArray:@[@"1",@"2",@"3"]];
+    
+    [self digitsOfNumber:12345];
+    
+    [self reverseArray:@[@"a",@"b",@"c",@"oh yea!"]];
+    
+    [self reverseArray:@[@"a",@"b",@"c",@"d",@"e",@"f",@"oh yea!"]];
+    
+    
+    
+    
     return YES;
 }
 
@@ -26,7 +44,7 @@
     
     for(NSString *word in arrayOfWords) {
         if (word.length > longestWord.length) {
-            //can I do this?? *******
+            //can I do this?? ******* <========================================
             longestWord = [word mutableCopy];
         }
     }
@@ -44,16 +62,19 @@
             [numberOfSpaces appendString:@" "];
         }
         
-        [rowWithFramedWord stringByAppendingFormat:@"* %@%@ *",word, numberOfSpaces];
+        [rowWithFramedWord appendFormat:@"* %@%@ *",word, numberOfSpaces];
+
+        
+        [framedWords addObject:rowWithFramedWord];
     }
     
-    [finalResult appendString:firstAndLastRow];
+    [finalResult appendFormat:@"\n%@",firstAndLastRow];
     for(NSString *row in framedWords) {
-        [finalResult stringByAppendingFormat:@"\n%@",row];
+        [finalResult appendFormat:@"\n%@",row];
     }
-    [finalResult stringByAppendingFormat:@"\n%@", firstAndLastRow];
-
-    NSLog(@"%@", finalResult);
+    [finalResult appendFormat:@"\n%@", firstAndLastRow];
+    
+    NSLog(@"Final Results = %@", finalResult);
     return finalResult;
 }
 
@@ -61,21 +82,29 @@
     
     NSMutableArray *pigLatinwWordsArray = [[NSMutableArray alloc] init];
     NSMutableString *finalPigLatinString = [NSMutableString stringWithString:@""];
+    NSMutableString *mutableEnglishText = [englishText mutableCopy];
     
-    NSArray *englishWordsArray = [[englishText lowercaseString] componentsSeparatedByString:@" "];
+    NSArray *englishWordsArray = [[mutableEnglishText lowercaseString] componentsSeparatedByString:@" "];
+    NSLog(@"englishwordsarray = %@",englishWordsArray);
     
     for(NSUInteger i = 0; i < [englishWordsArray count]; i++) {
         NSMutableString *pigLatinString = [NSMutableString stringWithString:@""];
-        NSString *currentWord = englishWordsArray[i];
+        NSMutableString *currentWord = [englishWordsArray[i] mutableCopy];
+        
+        NSLog(@"Current Word = %@", currentWord);
         
         
         //append everything but the first letter ***DONT HAVE TO USE A LOOP HERE JUST MAKE SUBSTRING
         
-        for(NSUInteger j = 1; j < currentWord.length; i++) {
-            NSString *letterToAppend = [currentWord substringWithRange:NSMakeRange(j,1)];
+        for(NSUInteger j = 1; j < currentWord.length; j++) {
+            
+            NSString *letterToAppend = [[currentWord substringWithRange:NSMakeRange(j,1)] mutableCopy];
+            NSLog(@"Letter to Append = %@", letterToAppend);
             
             [pigLatinString appendString:letterToAppend];
         }
+        
+        NSLog(@"HalfWay %@",pigLatinString);
         
         //append the first letter to the end
         NSString *letterToAppend = [currentWord substringWithRange:NSMakeRange(0,1)];
@@ -88,21 +117,26 @@
         
         [pigLatinwWordsArray addObject:pigLatinString];
         
+        NSLog(@"pig latin words array = %@",pigLatinwWordsArray);
+        
     }
     
     //convert the piglatin array into an finalpiglatinstring and capitalize the first word
     
     for(NSUInteger i = 0; i < [pigLatinwWordsArray count]; i++) {
         NSMutableString *wordToAppend = [NSMutableString stringWithString: @""];
+        NSLog(@"%lu",i);
         
         if (i==0) {
-            [wordToAppend stringByAppendingString: [[pigLatinwWordsArray[0] capitalizedString] mutableCopy]];
-            [finalPigLatinString stringByAppendingString:wordToAppend];
+            [wordToAppend appendString: [[pigLatinwWordsArray[0] capitalizedString] mutableCopy]];
+            [finalPigLatinString appendString:wordToAppend];
         } else {
-            [wordToAppend stringByAppendingString: pigLatinwWordsArray[i]];
-            [finalPigLatinString stringByAppendingFormat:@" %@",wordToAppend];
+            [wordToAppend appendString: pigLatinwWordsArray[i]];
+            [finalPigLatinString appendFormat:@" %@",wordToAppend];
         }
     }
+    
+    NSLog(@"%@", finalPigLatinString);
     
     return finalPigLatinString;
 }
@@ -123,12 +157,14 @@
         [englishString appendString:letterToAppend];
         
         //append first letter to the 4th to last letter
-        letterToAppend = [currentWord substringWithRange:NSMakeRange(0,currentWord.length - 4)];
+        letterToAppend = [currentWord substringWithRange:NSMakeRange(0,currentWord.length - 3)];
         [englishString appendString:letterToAppend];
         
         //store that word into englishwordsarray
         [englishWordsArray addObject:englishString];
     }
+    
+    NSLog(@"%@", englishWordsArray);
     
     //convert the english words array into finalEnglishString
     
@@ -140,11 +176,12 @@
             [finalEnglishString appendString:wordToAppend];
         } else {
             [wordToAppend appendString: englishWordsArray[i]];
-            [finalEnglishString stringByAppendingFormat:@" %@", wordToAppend];
+            [finalEnglishString appendFormat:@" %@", wordToAppend];
         }
     }
     
-    return @"";
+    NSLog(@"%@", finalEnglishString);
+    return finalEnglishString;
 }
 
 -(NSArray *)combineAndAlternateWithArray:(NSArray *)array1 andArray:(NSArray *)array2 {
@@ -159,6 +196,8 @@
         [combinedArray addObject:array2[i]];
         
     }
+    
+    NSLog(@"%@", combinedArray);
     
     return combinedArray;
 }
@@ -178,7 +217,7 @@
         [digitArray addObject:currentDigit];
     }
     
-    
+    NSLog(@"%@", digitArray);
     return digitArray;
 }
 
@@ -188,9 +227,10 @@
     
     for(NSUInteger i = 0; i < [mutArray count] /2; i++){
         
-        [mutArray exchangeObjectAtIndex:i withObjectAtIndex:[mutArray count] -1];
+        [mutArray exchangeObjectAtIndex:i withObjectAtIndex:([mutArray count] -1 - i)];
     }
     
+    NSLog(@"%@", mutArray);
     return mutArray;
 }
 

@@ -33,10 +33,8 @@
 		41F766AF74EFF6F12E750CC0 /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		5855FC39E03CFB314DB2C0CE /* ios-collections-and-strings-problems-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ios-collections-and-strings-problems-Info.plist"; sourceTree = "<group>"; };
 		6A0865F970058F19CBDE0DE7 /* Main.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		6C7C3828E89DF44A38A2E07A /* Pods-unit_tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unit_tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests.debug.xcconfig"; sourceTree = "<group>"; };
 		76E6BE0B04E13C96AE18D7E6 /* LaunchScreen.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		7A563C472D9C431ECC6DAA3C /* ios-collections-and-strings-problems-Prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ios-collections-and-strings-problems-Prefix.pch"; sourceTree = "<group>"; };
-		8C8BA4BDFD1F5D586FA9E961 /* Pods-unit_tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unit_tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-unit_tests/Pods-unit_tests.release.xcconfig"; sourceTree = "<group>"; };
 		904485A0263480492C985504 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		929340903897DEAF143CE66D /* ios-collections-and-strings-problems.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-collections-and-strings-problems.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE580214B86D58CA0255F54 /* main.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,15 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1365FEC89CA903A5ED0F5DCF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8C8BA4BDFD1F5D586FA9E961 /* Pods-unit_tests.release.xcconfig */,
-				6C7C3828E89DF44A38A2E07A /* Pods-unit_tests.debug.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		3C50A7EFE7B85799B378D6B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +135,6 @@
 				40DE011EE55175539DC592AF /* UnitTests */,
 				3C50A7EFE7B85799B378D6B1 /* Frameworks */,
 				72839D6892336512E2854D61 /* Products */,
-				1365FEC89CA903A5ED0F5DCF /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -428,7 +416,6 @@
 		};
 		D0764AB2070B1F742D55BEDB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C7C3828E89DF44A38A2E07A /* Pods-unit_tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ios-collections-and-strings-problems.app/ios-collections-and-strings-problems";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -449,7 +436,6 @@
 		};
 		E7AB213F92CEE2083A2ACBD8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C8BA4BDFD1F5D586FA9E961 /* Pods-unit_tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ios-collections-and-strings-problems.app/ios-collections-and-strings-problems";
 				FRAMEWORK_SEARCH_PATHS = (
